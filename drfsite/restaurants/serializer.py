@@ -5,4 +5,4 @@ from .models import Restaurants
 class RestaurantsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Restaurants
-        fields = ('title', 'cat_id')
+        fields = '__all__'

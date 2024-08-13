@@ -16,10 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
-from restaurants.views import RestaurantsAPIView
+from restaurants.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/restaurantslist/', RestaurantsAPIView.as_view())
+    path('api/v1/restaurantslist/', RestaurantsAPIList.as_view()),
+    path('api/v1/restaurantslist/<int:pk>', RestaurantsAPIUpdate.as_view()),
+    path('api/v1/restaurantsdetail/<int:pk>', RestaurantsAPIDetailView.as_view()),
 ]
