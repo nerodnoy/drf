@@ -29,7 +29,12 @@ from rest_framework import routers
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('api/v1/', include(router.urls)),
+
+    # авторизация на основе сессии
+    # добавляются 2 пути: drf-auth/login & drf-auth/logout
+    path('api/v1/drf-auth/', include('rest_framework.urls')),
+
     path('api/v1/restaurants/', RestaurantsAPIList.as_view()),
     path('api/v1/restaurants/<int:pk>/', RestaurantsAPIUpdate.as_view()),
-    path('api/v1/restaurants_delete/<int:pk>/', RestaurantsAPIDestroy.as_view())
+    path('api/v1/restaurants_delete/<int:pk>/', RestaurantsAPIDestroy.as_view()),
 ]
