@@ -9,8 +9,17 @@ from .serializer import RestaurantsSerializer
 # Заменяет весь CRUD
 # Наследование от ModelViewSet или ReadOnlyModelViewSet
 class RestaurantsViewSet(viewsets.ModelViewSet):
+    # Если мы убираем отсюда queryset, то нам нужно добавить basename в routes
     queryset = Restaurants.objects.all()
     serializer_class = RestaurantsSerializer
+
+    # Можем переопределять метод queryset, чтобы получать сложное поведение
+    # def get_queryset(self):
+    #     pk = self.kwargs.get("pk")
+    #     if not pk:
+    #         return Restaurants.objects.all()[:3]
+    #
+    #     return Restaurants.objects.filter(pk=pk)
 
     # Если нам нужно больше маршрутов добавить
     # Если detail=False, то выведем все записи

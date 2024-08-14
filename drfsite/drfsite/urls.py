@@ -21,6 +21,9 @@ from rest_framework import routers
 
 # Заменяет все path для CRUD
 router = routers.SimpleRouter()
+
+# Здесь добавим basename, если убрали queryset из View
+# basename='restaurants'
 router.register(r'restaurants', RestaurantsViewSet)
 
 urlpatterns = [
