@@ -1,5 +1,6 @@
 from django.views.generic import ListView
 from rest_framework import generics, viewsets
+from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
@@ -49,6 +50,9 @@ class RestaurantsAPIUpdate(generics.UpdateAPIView):
     queryset = Restaurants.objects.all()
     serializer_class = RestaurantsSerializer
     permission_classes = (IsOwnerOrReadOnly,)
+
+    # Допускаем авторизацию только по токенам
+    authentication_classes = (TokenAuthentication,)
 
 
 class RestaurantsAPIDestroy(generics.RetrieveUpdateDestroyAPIView):

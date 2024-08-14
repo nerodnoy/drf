@@ -15,7 +15,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.template.defaulttags import url
+from django.urls import path, include, re_path
 from restaurants.views import *
 from rest_framework import routers
 
@@ -37,4 +38,8 @@ urlpatterns = [
     path('api/v1/restaurants/', RestaurantsAPIList.as_view()),
     path('api/v1/restaurants/<int:pk>/', RestaurantsAPIUpdate.as_view()),
     path('api/v1/restaurants_delete/<int:pk>/', RestaurantsAPIDestroy.as_view()),
+
+    # djoser
+    path('api/v1/auth/', include('djoser.urls')),
+    re_path(r'^auth/', include('djoser.urls.authtoken')),
 ]
