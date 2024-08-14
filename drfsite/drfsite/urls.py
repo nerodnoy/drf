@@ -20,13 +20,16 @@ from restaurants.views import *
 from rest_framework import routers
 
 # Заменяет все path для CRUD
-router = routers.SimpleRouter()
+# router = routers.SimpleRouter()
 
 # Здесь добавим basename, если убрали queryset из View
 # basename='restaurants'
-router.register(r'restaurants', RestaurantsViewSet)
+# router.register(r'restaurants', RestaurantsViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/', include(router.urls)),
+    # path('api/v1/', include(router.urls)),
+    path('api/v1/restaurants/', RestaurantsAPIList.as_view()),
+    path('api/v1/restaurants/<int:pk>/', RestaurantsAPIUpdate.as_view()),
+    path('api/v1/restaurants_delete/<int:pk>/', RestaurantsAPIDestroy.as_view())
 ]
