@@ -2,6 +2,7 @@ from django.views.generic import ListView
 from rest_framework import generics, viewsets
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import action
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 
@@ -40,10 +41,18 @@ from .serializer import RestaurantsSerializer
 #         return Response({'categories': categories.name})
 
 
+class RestaurantsAPIListPagination(PageNumberPagination):
+    page_size = 3
+    page_size_query_param = 'page_size'
+    max_page_size = 10000
+
+
 class RestaurantsAPIList(generics.ListCreateAPIView):
     queryset = Restaurants.objects.all()
     serializer_class = RestaurantsSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
+    # pagination
+    pagination_class = RestaurantsAPIListPagination
 
 
 class RestaurantsAPIUpdate(generics.UpdateAPIView):
