@@ -52,7 +52,7 @@ class RestaurantsAPIUpdate(generics.UpdateAPIView):
     permission_classes = (IsOwnerOrReadOnly,)
 
     # Допускаем авторизацию только по токенам
-    authentication_classes = (TokenAuthentication,)
+    # authentication_classes = (TokenAuthentication,)
 
 
 class RestaurantsAPIDestroy(generics.RetrieveUpdateDestroyAPIView):
